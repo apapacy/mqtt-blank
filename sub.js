@@ -14,4 +14,4 @@ client.on('message', function(topic, message){
   console.log(topic)
   console.log(message.toString())
 })
-client.subscribe('test1');
+client.subscribe('test2', {qos: 0});
