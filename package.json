@@ -21,7 +21,8 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "mongodb": "^2.2.29",
-    "mqtt": "^2.9.0"
+    "mqtt": "^2.9.0",
+    "orientjs": "^2.2.5"
   },
   "devDependencies": {
     "escope": "^3.6.0",

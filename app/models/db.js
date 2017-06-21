@@ -8,7 +8,8 @@ const test = db.collection('test');
 exports.testDocumentInsert = function(doc) {
   //return Promise.resolve();
   //return test.save(doc);
-  return mdb.collection('test').insert(doc);
+  //return mdb.collection('test').insert(doc);
+  return odb.insert().into('Test').set({message: doc.message}).one().catch(function(err){console.log(err);});
 };
 
 var MongoClient = require('mongodb').MongoClient,
@@ -19,7 +20,7 @@ var url = 'mongodb://localhost:27017/test';
 
 // Use connect method to connect to the server
 var mdb;
-MongoClient.connect({
+MongoClient.connect(url, {
   database: 'test',
   host: 'localhost',
   options: {
@@ -46,3 +47,21 @@ MongoClient.connect({
 
   mdb = ref;
 });
+
+
+var OrientDB = require('orientjs');
+
+var server = OrientDB({
+  host: 'localhost',
+  port: 2424,
+  username: 'root',
+  password: 'password'
+});
+
+var odb = server.use({
+  name: 'GratefulDeadConcerts',
+  username: 'root',
+  password: 'password'
+});
+
+console.log(odb)

@@ -9,7 +9,7 @@ const client = mqtt.connect(
   }
 );
 var counter = 0;
-for (var i = 0; i < 10000; i++)
+for (var i = 0; i < 100000; i++)
 void function() {
   var counter1 = ++counter;
   client.publish('test3', 'message - ' + (counter1),{qos: 0}, function(err) {

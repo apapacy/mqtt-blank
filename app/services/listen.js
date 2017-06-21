@@ -10,7 +10,7 @@ const client = mqtt.connect(
     password: 'password'
   }
 );
-console.log(client)
+//console.log(client)
 var counter = 0;
 client.on('message', function(topic, message) {
   db.testDocumentInsert({ message: message.toString() })
