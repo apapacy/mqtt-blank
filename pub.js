@@ -1,6 +1,7 @@
 const mqtt = require('mqtt');
 const client = mqtt.connect(
   'mqtt://176.107.182.54:1883',
+  //'mqtt://127.0.0.1:1883',
   {
     clientId: 'test1',
     clean: false,

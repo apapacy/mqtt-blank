@@ -19,7 +19,7 @@ var MongoClient = require('mongodb').MongoClient,
 var url = 'mongodb://localhost:27017/test';
 
 // Use connect method to connect to the server
-var mdb;
+/*var mdb;
 MongoClient.connect(url, {
   database: 'test',
   host: 'localhost',
@@ -46,7 +46,7 @@ MongoClient.connect(url, {
   console.log("Connected successfully to server");
 
   mdb = ref;
-});
+});*/
 
 
 var OrientDB = require('orientjs');
@@ -54,14 +54,28 @@ var OrientDB = require('orientjs');
 var server = OrientDB({
   host: 'localhost',
   port: 2424,
-  username: 'root',
-  password: 'password'
+  username: 'admin',
+  password: 'admin'
 });
 
 var odb = server.use({
   name: 'GratefulDeadConcerts',
   username: 'root',
   password: 'password'
-});
+})
 
-console.log(odb)
+var k = 0;
+function tect() {
+  if (k++ > 1000) return;
+  for (var i = 0; i < 1000; i++) {
+    var arr = [];
+    var item = odb.insert().into('Test').set({message: 'Харьков'}).one().catch(function(err){console.log(err);});
+    arr.push(item);
+  }
+  return Promise.all(arr).then(
+    () => tect()
+  );
+}
+
+tect()
+console.log(odb);
